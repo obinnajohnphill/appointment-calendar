@@ -1,6 +1,10 @@
 <?php
- require('../controllers/AppointmentController.php');
- $times = AppointmentController::getTimes();
+ require('../controllers/TimeListController.php');
+ require('../models/Appointment.php');
+ $times = TimeListController::getTimes();
+ $call = new Appointment();
+ $appt1 =  $call->getPersonalAppointment(1);
+ $appt2 =  $call->getPersonalAppointment(2);
 ?>
 
 <!DOCTYPE html>
@@ -34,16 +38,26 @@
             <form action="/action" method="post">
                 <div class="form-group">
                     <label for="appt1">Select a appointment:</label>
-                    <select name="person_1_appt" id="appt1" class="form-control"><?php echo $times; ?></select>
+                    <select name="appt" id="appt1" class="form-control"><?php echo $times; ?></select>
                 </div><br/>
                 <div class="form-group">
                     <label for="boundary1">Set a boundary:</label>
-                    <p>from <select type="time" class="form-control" id="boundary1" name="person_1_from"><?php echo $times; ?></select></p>
-                    <p>to  <select  type="time" class="form-control" id="boundary1.2" name="person_1_to"><?php echo $times; ?></select></p>
+                    <p>from <select type="time" class="form-control" id="boundary1" name="from"><?php echo $times; ?></select></p>
+                    <p>to  <select  type="time" class="form-control" id="boundary1.2" name="to"><?php echo $times; ?></select></p>
                 </div><br/>
-                <input name="person1_id" value="1"hidden/>
+                <input name="person_id" value="1"hidden/>
                 <button type="submit" class="btn btn-primary">Submit</button><br/><br/>
             </form>
+            <p>
+              Appointments:
+                <?php
+                   if (isset($appt1) AND !empty($appt1)){
+                      echo json_encode($appt1);
+                    }else{
+                        echo 'There is no appointment booked yet';
+                    }
+                ?>
+            </p><br/>
         </div>
 
         <div class="col-sm-6" style="background-color:lavenderblush;">
@@ -51,16 +65,26 @@
             <form action="/action" method="post">
                 <div class="form-group">
                     <label for="appt2">Select a appointment:</label>
-                    <select name="person_2_appt" id="appt2" class="form-control"><?php echo $times; ?></select>
+                    <select name="appt" id="appt2" class="form-control"><?php echo $times; ?></select>
                 </div><br>
                 <div class="form-group">
                     <label for="boundary2">Set a boundary:</label>
-                    <p>from <select type="time" class="form-control" id="boundary2" name="person_2_from"><?php echo $times; ?></select></p>
-                    <p>to   <select type="time" class="form-control" id="boundary2.2" name="person_2_to"><?php echo $times; ?></select></p>
+                    <p>from <select type="time" class="form-control" id="boundary2" name="from"><?php echo $times; ?></select></p>
+                    <p>to   <select type="time" class="form-control" id="boundary2.2" name="to"><?php echo $times; ?></select></p>
                 </div><br/>
-                <input name="person2_id" value="2"hidden/>
+                <input name="person_id" value="2"hidden/>
                 <button type="submit" class="btn btn-primary">Submit</button><br/><br/>
             </form>
+            <p>
+                Appointments:
+                <?php
+                if (isset($appt2) AND !empty($appt2)){
+                    echo json_encode($appt2);
+                }else{
+                    echo 'There is no appointment booked yet';
+                }
+                ?>
+            </p><br/>
         </div>
     </div>
 </div>

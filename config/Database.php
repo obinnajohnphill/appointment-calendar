@@ -6,16 +6,19 @@ class Database {
     private $username = "homestead";
     private $password = "secret";
 
-    public $conn;
+    public function __construct(){
+       $this->getConnection();
+    }
 
     public function getConnection(){
-        $this->conn = null;
-        try{
-            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->database_name, $this->username, $this->password);
-            $this->conn->exec("set names utf8");
-        }catch(PDOException $exception){
-            echo "Database could not be connected: " . $exception->getMessage();
+        // Check connection
+        $conn = new mysqli($this->host, $this->username, $this->password, $this->database_name);
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }else{
+          return $conn;
         }
-        return $this->conn;
     }
+
 }
