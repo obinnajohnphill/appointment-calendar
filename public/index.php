@@ -10,7 +10,7 @@ Route::add('/',function(){
 
 Route::add('/action',function(){
     require '../controllers/AppointmentController.php';
-    new AppointmentController($_POST);
+    new AppointmentController(new BoundaryController());
 },'post');
 
 Route::run('/');

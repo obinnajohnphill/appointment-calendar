@@ -2,9 +2,12 @@
  require('../controllers/TimeListController.php');
  require('../models/Appointment.php');
  $times = TimeListController::getTimes();
- $call = new Appointment();
- $appt1 =  $call->getPersonalAppointment(1);
- $appt2 =  $call->getPersonalAppointment(2);
+ $appointment = new Appointment();
+ $boundary = new Boundary();
+ $appt1 =  $appointment->getPersonalAppointment(1);
+ $appt2 =  $appointment->getPersonalAppointment(2);
+ $bound1 =  $boundary->getPersonalBoundary(1);
+ $bound2 =  $boundary->getPersonalBoundary(2);
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +48,7 @@
                     <p>from <select type="time" class="form-control" id="boundary1" name="from"><?php echo $times; ?></select></p>
                     <p>to  <select  type="time" class="form-control" id="boundary1.2" name="to"><?php echo $times; ?></select></p>
                 </div><br/>
-                <input name="person_id" value="1"hidden/>
+                <input name="person_id" value="1" hidden/>
                 <button type="submit" class="btn btn-primary">Submit</button><br/><br/>
             </form>
             <p>
@@ -56,6 +59,16 @@
                     }else{
                         echo 'There is no appointment booked yet';
                     }
+                ?>
+            </p><br/>
+            <p>
+                Boundary Set:
+                <?php
+                if (isset($bound1) AND !empty($bound1)){
+                    echo json_encode($bound1);
+                }else{
+                    echo 'There is boundary set yet';
+                }
                 ?>
             </p><br/>
         </div>
@@ -72,7 +85,7 @@
                     <p>from <select type="time" class="form-control" id="boundary2" name="from"><?php echo $times; ?></select></p>
                     <p>to   <select type="time" class="form-control" id="boundary2.2" name="to"><?php echo $times; ?></select></p>
                 </div><br/>
-                <input name="person_id" value="2"hidden/>
+                <input name="person_id" value="2" hidden/>
                 <button type="submit" class="btn btn-primary">Submit</button><br/><br/>
             </form>
             <p>
@@ -82,6 +95,16 @@
                     echo json_encode($appt2);
                 }else{
                     echo 'There is no appointment booked yet';
+                }
+                ?>
+            </p><br/>
+            <p>
+                Boundary Set:
+                <?php
+                if (isset($bound2) AND !empty($bound2)){
+                    echo json_encode($bound2);
+                }else{
+                    echo 'There is boundary set yet';
                 }
                 ?>
             </p><br/>

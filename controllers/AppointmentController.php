@@ -9,14 +9,13 @@ class AppointmentController extends Appointment
 
     /**
      * Constructor from calling create appointment method
-     * @param array $request
-     *
-     * @return void
+     * @param BoundaryController $boundary
      */
-    public function __construct($request)
+    public function __construct(BoundaryController $boundary)
     {
-        $this->request = $request;
+        $this->request = $_POST;
         $this->create();
+        $boundary->createBoundary();
 
     }
 
