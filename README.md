@@ -4,9 +4,15 @@
 
   - Clone and extract project to a server
   
+  - cd into project root directory
+  
+  - RENAME: .htaccess.sample to .htaccess
+  
   - RUN: composer install
   
   - Create a database
+  
+  - update the database connection details in config/Database.php file
   
   - Created tables:
   
@@ -26,7 +32,9 @@
   created_at DATETIME NULL
   );
   
-
+  
+- Navigate to your host domain to view/interact with the calendar application
+  
 
 - Run Test: ./vendor/bin/phpunit tests
 
