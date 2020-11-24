@@ -21,7 +21,11 @@ class BoundaryController extends Boundary
 
     public function create(){
         if($this->request['from'] AND $this->request['to']){
-            $this->createBoundary($this->request);
+            if($this->checkIfRecordExists()){
+                $this->updateBoundary($this->request);
+            }else{
+                $this->createBoundary($this->request);
+            }
         }
     }
 }
