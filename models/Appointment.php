@@ -4,15 +4,20 @@ require_once __DIR__.'/../vendor/autoload.php';
 
 class Appointment extends Database
 {
-    public $conn;
-
     private $db_table = "appointments";
 
-    public $id;
-    public $person_id;
-    public $time_from;
-    public $time_to;
-    public $created_at;
+    protected  $id;
+    protected  $person_id;
+    protected  $time_from;
+    protected  $time_to;
+    protected  $created_at;
+    protected  $boundary;
+
+
+    public function __construct()
+    {
+        $this->boundary = new BoundaryController();
+    }
 
 
     public function createAppointment($request){
@@ -38,6 +43,7 @@ class Appointment extends Database
             $stmt->execute();
             $stmt->close();
             $connection->close();
+            $this->boundary->create($request);
             header("Location: /");
             exit();
         }

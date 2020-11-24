@@ -6,16 +6,19 @@ class AppointmentController extends Appointment
 {
 
     protected $request;
+    protected $boundary;
 
     /**
      * Constructor from calling create appointment method
+     * @param $request
      * @param BoundaryController $boundary
      */
-    public function __construct(BoundaryController $boundary)
+    public function __construct($request, BoundaryController $boundary)
     {
-        $this->request = $_POST;
+        $this->request = $request;
+        $this->boundary = $boundary;
         $this->create();
-        $boundary->createBoundary();
+
 
     }
 
@@ -23,6 +26,7 @@ class AppointmentController extends Appointment
         if($this->request['appt']){
             $this->createAppointment($this->request);
         }
+
     }
 
 }
