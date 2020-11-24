@@ -35,8 +35,8 @@
   
 - Navigate to your host domain to view/interact with the calendar application
   
-
-- Run Test: ./vendor/bin/phpunit tests
+###### Application Screenshot
+![Screenshot](screenshot.png)
 
 
 
