@@ -1,7 +1,10 @@
 <?php
  require('../controllers/TimeListController.php');
  require('../models/Appointment.php');
- $times = TimeListController::getTimes();
+ $appt1_times = TimeListController::getAppointmentTimes(2);
+ $appt2_times = TimeListController::getAppointmentTimes(1);
+ $bound1_times = TimeListController::getBoundaryTimes(1);
+ $bound2_times = TimeListController::getBoundaryTimes(2);
  $appointment = new Appointment();
  $boundary = new Boundary();
  $appt1 =  $appointment->getPersonalAppointment(1);
@@ -41,12 +44,12 @@
             <form action="/action" method="post">
                 <div class="form-group">
                     <label for="appt1">Select a appointment:</label>
-                    <select name="appt" id="appt1" class="form-control"><?php echo $times; ?></select>
+                    <select name="appt" id="appt1" class="form-control"><?php echo $appt1_times; ?></select>
                 </div><br/>
                 <div class="form-group">
                     <label for="boundary1">Set a boundary:</label>
-                    <p>from <select type="time" class="form-control" id="boundary1" name="from"><?php echo $times; ?></select></p>
-                    <p>to  <select  type="time" class="form-control" id="boundary1.2" name="to"><?php echo $times; ?></select></p>
+                    <p>from <select type="time" class="form-control" id="boundary1" name="from"><?php echo $bound1_times; ?></select></p>
+                    <p>to  <select  type="time" class="form-control" id="boundary1.2" name="to"><?php echo $bound1_times; ?></select></p>
                 </div><br/>
                 <input name="person_id" value="1" hidden/>
                 <button type="submit" class="btn btn-primary">Submit</button><br/><br/>
@@ -78,12 +81,12 @@
             <form action="/action" method="post">
                 <div class="form-group">
                     <label for="appt2">Select a appointment:</label>
-                    <select name="appt" id="appt2" class="form-control"><?php echo $times; ?></select>
+                    <select name="appt" id="appt2" class="form-control"><?php echo  $appt2_times; ?></select>
                 </div><br>
                 <div class="form-group">
                     <label for="boundary2">Set a boundary:</label>
-                    <p>from <select type="time" class="form-control" id="boundary2" name="from"><?php echo $times; ?></select></p>
-                    <p>to   <select type="time" class="form-control" id="boundary2.2" name="to"><?php echo $times; ?></select></p>
+                    <p>from <select type="time" class="form-control" id="boundary2" name="from"><?php echo $bound2_times; ?></select></p>
+                    <p>to   <select type="time" class="form-control" id="boundary2.2" name="to"><?php echo $bound2_times; ?></select></p>
                 </div><br/>
                 <input name="person_id" value="2" hidden/>
                 <button type="submit" class="btn btn-primary">Submit</button><br/><br/>

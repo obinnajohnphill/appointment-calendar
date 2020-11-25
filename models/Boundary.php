@@ -77,7 +77,7 @@ class Boundary
     public function getPersonalBoundary($person_id)
     {
         try {
-            $sql = "SELECT * FROM " . $this->db_table . "  WHERE person_id=?";
+            $sql = "SELECT * FROM " . $this->db_table . "  WHERE person_id=? ORDER BY time_from ASC";
             $conn = new Database();
             $connection = $conn->getConnection();
             $stmt = $connection->prepare($sql);
