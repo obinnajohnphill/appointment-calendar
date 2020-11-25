@@ -3,8 +3,7 @@
  require('../models/Appointment.php');
  $appt1_times = TimeListController::getAppointmentTimes(2);
  $appt2_times = TimeListController::getAppointmentTimes(1);
- $bound1_times = TimeListController::getBoundaryTimes(1);
- $bound2_times = TimeListController::getBoundaryTimes(2);
+ $bound_times = TimeListController::getBoundaryTimes();
  $appointment = new Appointment();
  $boundary = new Boundary();
  $appt1 =  $appointment->getPersonalAppointment(1);
@@ -48,8 +47,8 @@
                 </div><br/>
                 <div class="form-group">
                     <label for="boundary1">Set a boundary:</label>
-                    <p>from <select type="time" class="form-control" id="boundary1" name="from"><?php echo $bound1_times; ?></select></p>
-                    <p>to  <select  type="time" class="form-control" id="boundary1.2" name="to"><?php echo $bound1_times; ?></select></p>
+                    <p>from <select type="time" class="form-control" id="boundary1" name="from"><?php echo $bound_times; ?></select></p>
+                    <p>to  <select  type="time" class="form-control" id="boundary1.2" name="to"><?php echo $bound_times; ?></select></p>
                 </div><br/>
                 <input name="person_id" value="1" hidden/>
                 <button type="submit" class="btn btn-primary">Submit</button><br/><br/>
@@ -74,6 +73,11 @@
                 }
                 ?>
             </p><br/>
+            <form action="/delete" method="post">
+                <input name="person_id" value="1" hidden/>
+                <input name="delete" value="yes" hidden/>
+               <button type="submit" class="btn btn-danger">Clear Person1 Appt</button><br/><br/>
+            </form>
         </div>
 
         <div class="col-sm-6" style="background-color:lavenderblush;">
@@ -85,8 +89,8 @@
                 </div><br>
                 <div class="form-group">
                     <label for="boundary2">Set a boundary:</label>
-                    <p>from <select type="time" class="form-control" id="boundary2" name="from"><?php echo $bound2_times; ?></select></p>
-                    <p>to   <select type="time" class="form-control" id="boundary2.2" name="to"><?php echo $bound2_times; ?></select></p>
+                    <p>from <select type="time" class="form-control" id="boundary2" name="from"><?php echo $bound_times; ?></select></p>
+                    <p>to   <select type="time" class="form-control" id="boundary2.2" name="to"><?php echo $bound_times; ?></select></p>
                 </div><br/>
                 <input name="person_id" value="2" hidden/>
                 <button type="submit" class="btn btn-primary">Submit</button><br/><br/>
@@ -111,6 +115,11 @@
                 }
                 ?>
             </p><br/>
+            <form action="/delete" method="post">
+                <input name="person_id" value="2" hidden/>
+                <input name="delete" value="yes" hidden/>
+                <button type="submit" class="btn btn-danger">Clear Person2 Appt</button><br/><br/>
+            </form>
         </div>
     </div>
 </div>

@@ -4,10 +4,9 @@
 class TimeListController
 {
     /**
+     * Get available appointments
      *
-     * Get times as option-list.
-     *
-     * @return string List of times
+     * @return string list of times
      */
      public function getAppointmentTimes($person_id): string {
 
@@ -18,31 +17,27 @@ class TimeListController
         $interval = '+30 minutes';
         $output = '';
 
-        //$current = strtotime('00:00');
-        //$end = strtotime('23:59');
-
          $current = strtotime($data[0][0]);
          $end = strtotime(  $data[0][1]);
 
-        while ($current <= $end) {
+         while ($current <= $end) {
             $time = date('H:i', $current);
             $sel = ($time == $default) ? ' selected' : '';
 
             $output .= "<option value=\"{$time}\"{$sel}>" . date('h.i A', $current) .'</option>';
             $current = strtotime($interval, $current);
-        }
+         }
 
         return $output;
     }
 
 
     /**
+     * Get available boundary times
      *
-     * Get times as option-list.
-     *
-     * @return string List of times
+     * @return string list of times
      */
-    public function getBoundaryTimes($person_id): string {
+    public function getBoundaryTimes(): string {
 
         $default = '00:00';
         $interval = '+30 minutes';

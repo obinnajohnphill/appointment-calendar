@@ -3,7 +3,6 @@
 
 class Boundary
 {
-    private $conn;
 
     private $db_table = "boundaries";
 
@@ -13,7 +12,12 @@ class Boundary
     public $time_to;
     public $created_at;
 
-
+    /**
+     *
+     * Creates boundary record
+     *
+     * @return null
+     */
     public function createBoundary($request){
         try {
             $conn = new Database();
@@ -44,6 +48,12 @@ class Boundary
         }
     }
 
+    /**
+     *
+     * Updates boundary record
+     *
+     * @return null
+     */
     public function updateBoundary($request){
         try {
             $conn = new Database();
@@ -74,6 +84,12 @@ class Boundary
     }
 
 
+    /**
+     *
+     * Gets the boundary record for the person
+     *
+     * @return array of boundary record
+     */
     public function getPersonalBoundary($person_id)
     {
         try {
@@ -95,8 +111,12 @@ class Boundary
         }
     }
 
-
-
+    /**
+     *
+     * Deletes boundary record
+     *
+     * @return null
+     */
     function deleteAllBoundaries($person_id)
     {
         try {
@@ -112,6 +132,11 @@ class Boundary
         }
     }
 
+    /**
+     * Checks if boundary record already exists
+     *
+     * @return null
+     */
     public function checkIfRecordExists(){
         try {
             //$sql = "DELETE FROM " . $this->db_table . "  WHERE person_id=?";

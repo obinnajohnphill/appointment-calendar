@@ -13,13 +13,23 @@ class Appointment extends Database
     protected  $created_at;
     protected  $boundary;
 
-
+    /**
+     *
+     * Instantiates boundary class
+     *
+     * @return null
+     */
     public function __construct()
     {
         $this->boundary = new BoundaryController();
     }
 
-
+    /**
+     *
+     * Creates appointment record
+     *
+     * @return null
+     */
     public function createAppointment($request){
         try {
             $conn = new Database();
@@ -52,7 +62,12 @@ class Appointment extends Database
         }
     }
 
-
+    /**
+     *
+     * Gets the appointment record for the person
+     *
+     * @return array of appointment record
+     */
     public function getPersonalAppointment($person_id)
     {
         try {
@@ -75,7 +90,12 @@ class Appointment extends Database
     }
 
 
-
+    /**
+     *
+     * Deletes appointment record
+     *
+     * @return null
+     */
     function deleteAllAppointments($person_id)
     {
         try {
@@ -85,6 +105,8 @@ class Appointment extends Database
         $stmt = $connection->prepare($sql);
         $stmt->bind_param("i", $person_id);
         $stmt->execute();
+        header("Location: /");
+        exit();
         }
         catch(Exception $e) {
             echo 'Message: ' .$e->getMessage();

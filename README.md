@@ -34,6 +34,9 @@
   
   
 - Navigate to your host domain to view/interact with the calendar application
+
+###### Important Note!!
+- To test that the appointment inputs shown are not outside the boundary, you must make sure the 'from' boundary time is not higher than the 'to'
   
 ###### Application Screenshot
 ![Screenshot](screenshot.png)

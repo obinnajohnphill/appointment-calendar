@@ -9,7 +9,8 @@ class AppointmentController extends Appointment
     protected $boundary;
 
     /**
-     * Constructor from calling create appointment method
+     * Constructor that calls create appointment method
+     * Sets up boundary class via dependency injection
      * @param $request
      * @param BoundaryController $boundary
      */
@@ -17,16 +18,34 @@ class AppointmentController extends Appointment
     {
         $this->request = $request;
         $this->boundary = $boundary;
-        $this->create();
-
+        if($this->request['delete'] == 'yes'){
+            $this->delete();
+        }else{
+            $this->create();
+        }
 
     }
 
+    /**
+     * Calls the create appointment model method
+     *
+     * @return null
+     */
     public function create(){
         if($this->request['appt']){
             $this->createAppointment($this->request);
         }
 
+    }
+
+
+    /**
+     * Calls the delete appointment model method
+     *
+     * @return null
+     */
+    public function delete(){
+       $this->deleteAllAppointments($this->request['person_id']);
     }
 
 }

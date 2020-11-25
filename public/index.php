@@ -13,5 +13,11 @@ Route::add('/action',function(){
     new AppointmentController($_POST, new BoundaryController());
 },'post');
 
+Route::add('/delete',function(){
+    require '../controllers/AppointmentController.php';
+    new AppointmentController($_POST, new BoundaryController());
+},'post');
+
+
 Route::run('/');
 
